@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- [EDIT HERE] Change your browser tab title -->
+  <title>nekao98 🍒 | Music Composer & Producer</title>
+  <style>
+    :root {
+      --bg-dark: #0f0406;
+      --bg-card: #1c080d;
+      --bg-card-hover: #290c14;
+      --cherry-bright: #e6193c;
+      --cherry-deep: #8a0b22;
+      --cherry-glow: rgba(230, 25, 60, 0.35);
+      --cream-text: #fcecef;
+      --muted-text: #c49ba3;
+      --stem-green: #4e8c45;
+      --border-radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(138, 11, 34, 0.22) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(230, 25, 60, 0.15) 0%, transparent 40%);
+      color: var(--cream-text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 4, 6, 0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--cherry-deep);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--cream-text);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: var(--cherry-bright);
+    }
+
+    nav a {
+      color: var(--cream-text);
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--cherry-bright);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero / Bio Section */
+    .hero {
+      text-align: center;
+      padding: 70px 20px 50px;
+      border-bottom: 1px solid var(--cherry-deep);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--cherry-deep);
+      color: var(--cream-text);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 15px;
+      border: 1px solid var(--cherry-bright);
+      box-shadow: 0 0 12px var(--cherry-glow);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      text-shadow: 0 2px 15px var(--cherry-glow);
+    }
+
+    .hero h1 span {
+      color: var(--cherry-bright);
+    }
+
+    .specialty-tags {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .tag {
+      background: var(--bg-card);
+      border: 1px solid var(--cherry-deep);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--muted-text);
+    }
+
+    .tag.highlight {
+      border-color: var(--cherry-bright);
+      color: var(--cream-text);
+      font-weight: 600;
+    }
+
+    .bio-box {
+      max-width: 680px;
+      margin: 20px auto 0;
+      background: var(--bg-card);
+      border: 1px solid var(--cherry-deep);
+      border-radius: var(--border-radius);
+      padding: 20px 25px;
+      color: var(--muted-text);
+    }
+
+    /* Section Headings */
+    section {
+      padding-top: 60px;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-subtitle {
+      color: var(--muted-text);
+      margin-bottom: 30px;
+      font-size: 0.95rem;
+    }
+
+    /* Audio Demos Grid (7 Slots) */
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .track-card {
+      background: var(--bg-card);
+      border: 1px solid var(--cherry-deep);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .track-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--cherry-bright);
+      box-shadow: 0 6px 20px rgba(230, 25, 60, 0.18);
+      background: var(--bg-card-hover);
+    }
+
+    .track-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .track-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--cream-text);
+    }
+
+    .track-genre {
+      font-size: 0.75rem;
+      background: var(--cherry-deep);
+      color: var(--cream-text);
+      padding: 3px 9px;
+      border-radius: 6px;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .track-desc {
+      font-size: 0.9rem;
+      color: var(--muted-text);
+      margin-bottom: 15px;
+    }
+
+    audio {
+      width: 100%;
+      height: 38px;
+      border-radius: 8px;
+      outline: none;
+      accent-color: var(--cherry-bright);
+    }
+
+    /* Commissions Section */
+    .status-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--cherry-bright);
+      padding: 8px 18px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      background-color: var(--stem-green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--stem-green);
+    }
+
+    .comms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .comm-card {
+      background: var(--bg-card);
+      border: 1px solid var(--cherry-deep);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      position: relative;
+    }
+
+    .comm-card:hover {
+      border-color: var(--cherry-bright);
+    }
+
+    .comm-tier {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .comm-price {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--cherry-bright);
+      margin-bottom: 15px;
+    }
+
+    .comm-list {
+      list-style: none;
+      margin-bottom: 15px;
+    }
+
+    .comm-list li {
+      padding: 6px 0;
+      color: var(--muted-text);
+      font-size: 0.92rem;
+      border-bottom: 1px dashed rgba(138, 11, 34, 0.5);
+    }
+
+    .comm-list li::before {
+      content: "🍒 ";
+    }
+
+    .tos-box {
+      background: var(--bg-card);
+      border-left: 4px solid var(--cherry-bright);
+      padding: 20px 25px;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+
+    .tos-box h3 {
+      margin-bottom: 10px;
+      color: var(--cream-text);
+    }
+
+    .tos-box ul {
+      padding-left: 20px;
+      color: var(--muted-text);
+      font-size: 0.92rem;
+    }
+
+    .tos-box li {
+      margin-bottom: 6px;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--cherry-deep);
+      border-radius: var(--border-radius);
+      padding: 22px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--cream-text);
+      transition: all 0.2s;
+      display: block;
+    }
+
+    .contact-card:hover {
+      border-color: var(--cherry-bright);
+      background: var(--bg-card-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px var(--cherry-glow);
+    }
+
+    .contact-platform {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--cherry-bright);
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .contact-handle {
+      font-size: 1.2rem;
+      font-weight: 700;
+      word-break: break-all;
+    }
+
+    .contact-note {
+      font-size: 0.82rem;
+      color: var(--muted-text);
+      margin-top: 8px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 70px;
+      padding-top: 25px;
+      border-top: 1px solid var(--cherry-deep);
+      color: var(--muted-text);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <!-- [EDIT HERE] Change Header Name if desired -->
+    <a href="#" class="logo">🍒 nekao<span>98</span></a>
+    <nav>
+      <a href="#demos">Demos</a>
+      <a href="#commissions">Commissions</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+
+    <!-- HERO / ABOUT SECTION -->
+    <section class="hero">
+      <div class="badge">🍒 7 YEARS OF COMPOSING EXPERIENCE</div>
+      <!-- [EDIT HERE] Main Title / Name -->
+      <h1>Custom Music &amp; <span>OST Production</span></h1>
+
+      <div class="specialty-tags">
+        <span class="tag highlight">★ Danganronpa Style (Psycho-Pop / Investigation)</span>
+        <span class="tag highlight">★ Friday Night Funkin' (FNF)</span>
+        <span class="tag highlight">★ Retro VGM (8-Bit / 16-Bit / Chiptune)</span>
+        <span class="tag">★ Virtually All Genres Available</span>
+      </div>
+
+      <div class="bio-box">
+        <!-- [EDIT HERE] Write your personal bio below! -->
+        <p>
+          [INSERT YOUR BIO HERE — Tell visitors a little about yourself, your DAW/workflow, favorite projects you've scored, and what kind of soundtrack work excites you most!]
+        </p>
+      </div>
+    </section>
+
+    <!-- AUDIO DEMOS SECTION (7 SLOTS) -->
+    <section id="demos">
+      <h2 class="section-title">🍒 Featured Audio Demos</h2>
+      <p class="section-subtitle">Click play on any track below to preview my work. Playing a new track automatically pauses the previous one.</p>
+
+      <div class="demos-grid">
+
+        <!-- SLOT 1 -->
+        <div class="track-card">
+          <div>
+            <div class="track-header">
+              <!-- [EDIT HERE] Track 1 Title & Genre -->
+              <span class="track-title">[Track 1 Title]</span>
+              <span class="track-genre">Danganronpa Style</span>
+            </div>
+            <!-- [EDIT HERE] Track 1 Description -->
+            <p class="track-desc">[Add short description, e.g., High-energy trial theme / Masafumi Takada inspired psycho-pop]</p>
+          </div>
+          <!-- [EDIT HERE] Replace audio/demo1.mp3 with your exact filename -->
+          <audio controls preload="metadata" src="audio/demo1.mp3"></audio>
+        </div>
+
+        <!-- SLOT 2 -->
+        <div class="track-card">
+          <div>
+            <div class="track-header">
+              <!-- [EDIT HERE] Track 2 Title & Genre -->
+              <span class="track-title">[Track 2 Title]</span>
+              <span class="track-genre">FNF Mod Track</span>
+            </div>
+            <!-- [EDIT HERE] Track 2 Description -->
+            <p class="track-desc">[Add short description, e.g., Fast-paced rhythm battle track with custom chromatic vocals]</p>
+          </div>
+          <!-- [EDIT HERE] Replace audio/demo2.mp3 with your exact filename -->
+          <audio controls preload="metadata" src="audio/demo2.mp3"></audio>
+        </div>
+
+        <!-- SLOT 3 -->
+        <div class="track-card">
+          <div>
+            <div class="track-header">
+              <!-- [EDIT HERE] Track 3 Title & Genre -->
+              <span class="track-title">[Track 3 Title]</span>
+              <span class="track-genre">Retro VGM</span>
+            </div>
+            <!-- [EDIT HERE] Track 3 Description -->
+            <p class="track-desc">[Add short description, e.g., 16-bit FM synth stage theme / classic console soundfont]</p>
+          </div>
+          <!-- [EDIT HERE] Replace audio/demo3.mp3 with your exact filename -->
+          <audio controls preload="metadata" src="audio/demo3.mp3"></audio>
+        </div>
+
+        <!-- SLOT 4 -->
+        <div class="track-card">
+          <div>
+            <div class="track-header">
+              <!-- [EDIT HERE] Track 4 Title & Genre -->
+              <span class="track-title">[Track 4 Title]</span>
+              <span class="track-genre">[Genre Tag]</span>
+            </div>
+            <!-- [EDIT HERE] Track 4 Description -->
+            <p class="track-desc">[Add short description of the mood, instruments, or project context]</p>
+          </div>
+          <!-- [EDIT HERE] Replace audio/demo4.mp3 with your exact filename -->
+          <audio controls preload="metadata" src="audio/demo4.mp3"></audio>
+        </div>
+
+        <!-- SLOT 5 -->
+        <div class="track-card">
+          <div>
+            <div class="track-header">
+              <!-- [EDIT HERE] Track 5 Title & Genre -->
+              <span class="track-title">[Track 5 Title]</span>
+              <span class="track-genre">[Genre Tag]</span>
+            </div>
+            <!-- [EDIT HERE] Track 5 Description -->
+            <p class="track-desc">[Add short description of the mood, instruments, or project context]</p>
+          </div>
+          <!-- [EDIT HERE] Replace audio/demo5.mp3 with your exact filename -->
+          <audio controls preload="metadata" src="audio/demo5.mp3"></audio>
+        </div>
+
+        <!-- SLOT 6 -->
+        <div class="track-card">
+          <div>
+            <div class="track-header">
+              <!-- [EDIT HERE] Track 6 Title & Genre -->
+              <span class="track-title">[Track 6 Title]</span>
+              <span class="track-genre">[Genre Tag]</span>
+            </div>
+            <!-- [EDIT HERE] Track 6 Description -->
+            <p class="track-desc">[Add short description of the mood, instruments, or project context]</p>
+          </div>
+          <!-- [EDIT HERE] Replace audio/demo6.mp3 with your exact filename -->
+          <audio controls preload="metadata" src="audio/demo6.mp3"></audio>
+        </div>
+
+        <!-- SLOT 7 -->
+        <div class="track-card">
+          <div>
+            <div class="track-header">
+              <!-- [EDIT HERE] Track 7 Title & Genre -->
+              <span class="track-title">[Track 7 Title]</span>
+              <span class="track-genre">[Genre Tag]</span>
+            </div>
+            <!-- [EDIT HERE] Track 7 Description -->
+            <p class="track-desc">[Add short description of the mood, instruments, or project context]</p>
+          </div>
+          <!-- [EDIT HERE] Replace audio/demo7.mp3 with your exact filename -->
+          <audio controls preload="metadata" src="audio/demo7.mp3"></audio>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- COMMISSIONS TEMPLATE SECTION -->
+    <section id="commissions">
+      <h2 class="section-title">🍒 Commission Rates &amp; Info</h2>
+      <p class="section-subtitle">Customizable packages for indie games, visual novels, mods, and content creators.</p>
+
+      <!-- [EDIT HERE] Change OPEN to CLOSED or WAITLIST anytime -->
+      <div class="status-banner">
+        <span class="status-dot"></span>
+        <span>Commission Status: OPEN</span>
+      </div>
+
+      <div class="comms-grid">
+
+        <!-- TIER 1 TEMPLATE -->
+        <div class="comm-card">
+          <!-- [EDIT HERE] Tier 1 Name & Price -->
+          <div class="comm-tier">[Tier 1 Name, e.g., Short Loop / BGM]</div>
+          <div class="comm-price">$[Price]</div>
+          <ul class="comm-list">
+            <!-- [EDIT HERE] Tier 1 Details -->
+            <li>[Length, e.g., Up to 1:30 audio]</li>
+            <li>[Track count / instrument complexity]</li>
+            <li>[Revisions included]</li>
+            <li>[Delivery format: WAV / MP3]</li>
+          </ul>
+        </div>
+
+        <!-- TIER 2 TEMPLATE -->
+        <div class="comm-card">
+          <!-- [EDIT HERE] Tier 2 Name & Price -->
+          <div class="comm-tier">[Tier 2 Name, e.g., Full Custom Track]</div>
+          <div class="comm-price">$[Price]</div>
+          <ul class="comm-list">
+            <!-- [EDIT HERE] Tier 2 Details -->
+            <li>[Length, e.g., Up to 2:30 - 3:00 audio]</li>
+            <li>[Mixing &amp; Mastering included]</li>
+            <li>[Custom vocals / chromatics / leads]</li>
+            <li>[Seamless looping available]</li>
+          </ul>
+        </div>
+
+        <!-- TIER 3 / ADD-ONS TEMPLATE -->
+        <div class="comm-card">
+          <!-- [EDIT HERE] Tier 3 or Add-ons Name & Price -->
+          <div class="comm-tier">[Tier 3 / Add-Ons &amp; Licensing]</div>
+          <div class="comm-price">$[Price / %]</div>
+          <ul class="comm-list">
+            <!-- [EDIT HERE] Add-on Details -->
+            <li>[Stem Export: +X%]</li>
+            <li>[Project File / FLP: +X%]</li>
+            <li>[Commercial / Merch Rights: +X%]</li>
+            <li>[Rush Order: +X%]</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- TERMS OF SERVICE TEMPLATE -->
+      <div class="tos-box">
+        <h3>Terms of Service &amp; Notes</h3>
+        <ul>
+          <!-- [EDIT HERE] Edit your TOS bullets below -->
+          <li><strong>Turnaround Time:</strong> [Insert your typical turnaround window, e.g., 1 week to 2 months depending on complexity].</li>
+          <li><strong>Payment:</strong> Accepted via VGen or agreed invoice method.</li>
+          <li><strong>Usage &amp; Credit:</strong> Please credit <strong>nekao98</strong> wherever the music is used.</li>
+          <li><strong>Restrictions:</strong> [Insert your rules, e.g., Strictly NO AI training/sampling, no unauthorized streaming uploads without commercial buyout].</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+      <h2 class="section-title">🍒 Get In Touch</h2>
+      <p class="section-subtitle">Ready to commission a track or have questions about a project? Reach out on any of my official platforms below!</p>
+
+      <div class="contact-grid">
+
+        <!-- VGEN -->
+        <a href="https://vgen.co/nekao98" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <div class="contact-platform">VGen Commissions</div>
+          <div class="contact-handle">vgen.co/nekao98</div>
+          <div class="contact-note">Click to view services &amp; order directly</div>
+        </a>
+
+        <!-- DISCORD -->
+        <div class="contact-card" onclick="navigator.clipboard.writeText('nekao98'); alert('Copied Discord username: nekao98');" style="cursor: pointer;">
+          <div class="contact-platform">Discord</div>
+          <div class="contact-handle">nekao98</div>
+          <div class="contact-note">Click card to copy username for DMs</div>
+        </div>
+
+        <!-- GMAIL -->
+        <a href="mailto:nekao98inq@gmail.com" class="contact-card">
+          <div class="contact-platform">Email Inquiries</div>
+          <div class="contact-handle">nekao98inq@gmail.com</div>
+          <div class="contact-note">Click to send a direct email</div>
+        </a>
+
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 nekao98 🍒 | All Rights Reserved.</p>
+    </footer>
+
+  </div>
+
+  <!-- Auto-Pause Script: Pauses other tracks when you hit play on a new one -->
+  <script>
+    const players = document.querySelectorAll('audio');
+    players.forEach(player => {
+      player.addEventListener('play', () => {
+        players.forEach(other => {
+          if (other !== player) {
+            other.pause();
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
